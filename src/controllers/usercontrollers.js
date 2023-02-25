@@ -6,22 +6,21 @@ import { pool } from "../db.js";
 
 export const inguser = function(request, response){
 
-    var username = request.body.username;
-	var password = request.body.password;
-	if (username && password) {
-		pool.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
-			if (results.length > 0) {
-               ver = true;
-			} else {
-				ver = false;
+    const {username, password} = req.body 
+	usern = pool.query('SELECT username FROM users') ;
+			if (username === usern) {
+                pass = pool.query('SELECT password FROM users')
+                if (password=== pass) {
+                ver = true;
+                } else {
+                    ver = false;
+                }
+			    } else {
+				    ver = false;
 			}			
-			response.end();
-		});
-	} else {
-		response.send('Please enter Username and Password!');
-		response.end();
-	}
-};
+
+		};
+
 
     
 
