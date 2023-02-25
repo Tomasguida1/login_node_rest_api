@@ -4,7 +4,7 @@ import { pool } from "../db.js";
 //user and password validation
 
 
-export const inguser = function(request, response){
+export const inguser = (req, res) =>{
 
     const {username, password} = req.body 
 	usern = pool.query('SELECT username FROM users') ;
