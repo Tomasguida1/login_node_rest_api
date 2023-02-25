@@ -8,7 +8,7 @@ export const inguser = function(request, response)  {
     let username = request.body.username;
 	let password = request.body.password;
     if (username && password) {
-    pool.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {       
+    pool.query('SELECT * FROM user WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {       
         if (error) 
         ver = false;
         if (results.length > 0) {
