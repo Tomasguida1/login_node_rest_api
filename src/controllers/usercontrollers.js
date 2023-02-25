@@ -4,11 +4,11 @@ import { pool } from "../db.js";
 //user and password validation
 
 
-export const inguser = (req, res) => {
+export const inguser = async(req, res) => {
   
 try{
 
-        const result = pool.query("SELECT * FROM users") 
+        const {result} = await pool.query("SELECT * FROM users") 
 
                 res.json(result)
 
