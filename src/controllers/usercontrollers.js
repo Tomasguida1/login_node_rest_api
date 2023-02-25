@@ -5,19 +5,25 @@ import { pool } from "../db.js";
 
 
 export const inguser =async (req, res) => {
+    const username = "mochilote";
+    const password = "gipeto2015";   
 try{
-    const { username, password } = req.body;
-    if (username && password) {
-        const [rows] = await pool.query("SELECT * FROM users WHERE username = ? AND password = ?", [username, password], async (err, rows) => {
-        if (rows.length == 0){
-            ver = false;
-        }else{
-            ver = true;
-        }
-     }
-    )
-}
-}catch(error){
+
+
+    
+        if (username && password) {
+            pool.query("SELECT * FROM users WHERE username = ? AND password = ?", [username, password], async (err, result) => {
+            if (result.length == 0){
+                ver = false;
+            }else{
+                ver = true;
+            }
+         }
+        )
+    }else{
+        console.log("me ejecute");
+    }
+    }catch(error){
     return res.status(500).json({message: "error"}) 
 }
 }
