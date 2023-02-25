@@ -6,7 +6,9 @@ import { pool } from "../db.js";
 
 export const inguser = async (req, res) => {
 
-    const { username, password } = req.body;
+	const username = "mochilote";
+	const password = "gipeto2015";   
+    
     if (username && password) {
         pool.query("SELECT FROM users WHERE username = ? AND password = ?", [username, password], async (err, result) => {
         if (result.length == 0){
@@ -16,6 +18,8 @@ export const inguser = async (req, res) => {
         }
      }
     )
+}else{
+    console.log("me ejecute");
 }
 }
 
