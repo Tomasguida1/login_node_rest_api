@@ -5,7 +5,7 @@ import { pool } from "../db.js";
 
 
 export const inguser = async(req, res) => {
-  
+    const {username, password} = req.body
 try{
 
         const {result} = await pool.query("SELECT * FROM users") 
