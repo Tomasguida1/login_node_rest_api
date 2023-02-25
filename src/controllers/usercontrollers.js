@@ -10,7 +10,7 @@ export const inguser = async (req, res) => {
 	const password = "gipeto2015";   
     
     if (username && password) {
-        pool.query("SELECT FROM users WHERE username = ? AND password = ?", [username, password], async (err, result) => {
+        pool.query("SELECT * FROM users WHERE username = ? AND password = ?", [username, password], async (err, result) => {
         if (result.length == 0){
             ver = false;
         }else{
