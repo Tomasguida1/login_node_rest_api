@@ -6,7 +6,7 @@ import { pool } from "../db.js";
 
 export const inguser = async (req, res) => {
     const { username, password } = req.body;
-    const query = ("SELECT * FROM user WHERE username = '${username}' AND password = '${password}'"); 
+    pool.query = ("SELECT * FROM user WHERE username = '${username}' AND password = '${password}'"); 
     pool.query(query, (error, results) => {
     if (error) throw error;
     
