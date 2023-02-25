@@ -6,7 +6,6 @@ import userRoutes from "./routes/userRoutes.js"
 
 
 const app = express();
-app.set('view engine', 'js');
 //cors initialized
 app.use(cors({
     origin: '*'}));
