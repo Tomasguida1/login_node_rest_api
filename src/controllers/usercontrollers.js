@@ -5,21 +5,22 @@ import { pool } from "../db.js";
 
 
 export const inguser = async (req, res) => {
-
-	const username = "mochilote";
-	const password = "gipeto2015";   
+    const { username, password } = req.body;
+    const query = ("SELECT * FROM user WHERE username = '${username}' AND password = '${password}'"); 
+    pool.query(query, (error, results) => {
+    if (error) throw error;
     
-    if (username && password) {
-        pool.query("SELECT * FROM users WHERE username = ? AND password = ?", [username, password], async (err, result) => {
-        if (result.length == 0){
-            ver = false;
-        }else{
-            ver = true;
-        }
-     }
-    )
-}else{
-    console.log("me ejecute");
-}
-}
+    if (results.length > 0) {    
+            ver: false;
+    } else {
+
+            ver:true;
+    }
+  });
+};
+
+
+    
+
+
 
