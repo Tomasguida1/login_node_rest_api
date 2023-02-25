@@ -4,17 +4,18 @@ import { pool } from "../db.js";
 //user and password validation
 
 
-export const inguser =async(req, res) => {
-    const {username, password} = req.body
+export const inguser =(req, res) => {
+	let username = req.body.username;
+	let password = req.body.password;
 
-    const [rows] = await pool.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password] )
-    if(rows.length > 0) {
+    pool.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], (err, rows) => {
+      if(rows.length > 0) {
         ver = true;
       } else {
         ver = false;
-    }}
-    ;
-
+      }
+    });
+  }
     
 
 
