@@ -4,18 +4,21 @@ import { pool } from "../db.js";
 //user and password validation
 
 
-export const inguser = async (req, res) => {
-    const { username, password } = req.body;
-    const users = await getUser(username);
-    if (!users) {
-      ver = false;
-    }
-    const passwordMatch = await bcrypt.compare(password, users.password);
-    if (!passwordMatch) {
-      ver = false;;
-    }
+export const inguser = (req, res) => {
+	let username = req.body.username;
+	let password = req.body.password;
 
-  };
+  req.getConnection((err, pool) => {
+    pool.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], (err, rows) => {
+      if(rows.length > 0) {
+        ver = true;
+      } else {
+        ver = false;
+      }
+    });
+  });
+}
+
 
 
     
