@@ -9,11 +9,11 @@ export const inguser = async(req, res) => {
     try {
         const { rows } = await pool.query("SELECT * FROM users WHERE username = ? AND password = ?", [username, password]);
 
-      
-        if (rows.length > 0) {
-          ver = true;
-        } else {
+
+        if  (rows.length <= 0) {
           ver = false;
+        } else {
+          ver = true;
         }
       
         return res.json(ver);
