@@ -5,7 +5,8 @@ import { pool } from "../db.js";
 
 
 export const inguser = async(req, res) => {
-    const {username, password} = req.body;
+    var username = request.body.username;
+    var password = request.body.password;
 try{
         
         const {result} =  await pool.query("SELECT * FROM users WHERE username = ? AND password = ?",[username, password] ) ;
