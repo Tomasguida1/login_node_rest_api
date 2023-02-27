@@ -8,7 +8,7 @@ export const inguser = async(req, res) => {
     const {username,password} = req.body
 try{
         
-        const {result} =  await pool.query("SELECT * FROM users WHERE id = 1 AND username = ? AND password = ?",[username, password] ) ;
+        const {result} =  await pool.query("SELECT * FROM users WHERE  username = ?, ${[username]} AND password = ?,${[password]} " ) ;
         if(result.length > 0){
             ver = true;
         } else {
