@@ -5,8 +5,7 @@ import { pool } from "../db.js";
 
 
 export const inguser = async(req, res) => {
-    var username = req.body.username;
-    var password = req.body.password;
+    const {username,password} = req.body
 try{
         
         const {result} =  await pool.query("SELECT * FROM users WHERE id = 1 AND username = ? AND password = ?",[username, password] ) ;
@@ -17,7 +16,7 @@ try{
         }
 
         res.json(ver);
-        res.end();
+
 
 }catch(error){
     return res.status(500).json({message: error}) 
