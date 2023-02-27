@@ -5,12 +5,17 @@ import { pool } from "../db.js";
 
 
 export const inguser = async(req, res) => {
-    const {username, password} = req.body
+    const {username, password} = req.body;
 try{
+        
+        const {result} = await pool.query("SELECT * FROM users WHERE username = ?, password = ?",[username, password] ) ;
+        if(result.length > 0){
+            ver = true;
+        } else {
+          ver = false;
+        }
 
-        const {result} = await pool.query("SELECT * FROM users") 
-
-                res.json(result)
+        res.json(ver);
 
 }catch(error){
     return res.status(500).json({message: "error"}) 
